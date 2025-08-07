@@ -10,125 +10,64 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Arianna's Homepage</title>
 <style>
-    body { 
+    body {
         margin: 0;
-        padding-top: 50px;
-        transition: padding-top 0.3s ease;
-    }
-    
-    /* This rule applies ONLY when a weather alert is active */
-    body.alert-active {
-        /* Makes space for the 55px alert AND the 50px news ticker */
-        padding-top: 105px; 
+        padding-top: 50px; /* Space for header elements */
+        /* Add a background image with transparency */
+        background-image: url('https://images.unsplash.com/photo-1502800534057-278a5048de6a?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
     }
 
-    /* WEATHER ALERT BANNER */
-    #weather-alert {
-        display: none;
-        background-color: #d9534f;
-        color: white;
-        padding: 15px;
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        position: fixed;
-        top: 0; /* Pinned to the very top */
-        width: 100%;
-        z-index: 10000;
-        border-bottom: 2px solid #a94442;
-        height: 55px; /* Set an explicit height */
-        box-sizing: border-box; /* Ensures padding is included in height */
-    }
-
-    /* NEWS TICKER */
-    #news-ticker {
-        position: fixed;
-        top: 0; /* DEFAULT: Pinned to the top */
-        left: 0;
-        width: 100%;
-        height: 50px;
-        background: #000;
-        color: #fff;
-        overflow: hidden;
-        z-index: 9999;
-        border-bottom: 2px solid #333;
-        transition: top 0.3s ease;
-    }
-    
-    /* This rule applies ONLY when a weather alert is active */
-    body.alert-active #news-ticker {
-        top: 55px; /* Pushes the news ticker down below the alert banner */
-    }
-    
-    #news-content {
-        position: absolute;
-        white-space: nowrap;
-        line-height: 50px;
-        font-size: 16px;
-        font-weight: bold;
-        animation-name: scroll-left;
-        animation-duration: 250s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        will-change: transform;
-    }
-    
-    @keyframes scroll-left {
-        0% {
-            transform: translateX(100vw);
-        }
-        100% {
-            transform: translateX(-100%); 
-        }
-    }
-    
-    #news-content a {
-        color: #fff;
-        text-decoration: none;
-        margin-right: 80px;
-    }
-    
-    #news-content a:hover {
-        text-decoration: underline;
-    }
-    
     main {
         position: relative !important;
         top: 10px !important;
+        /* Add a semi-transparent overlay to the main content for readability */
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px); /* Adds a frosted glass effect */
+        border-radius: 15px;
+        padding: 20px;
     }
-    
-    /* === NEW DOCK STYLES FOR ICON SIZING AND ANIMATION === */
+
+    /* Greeting Message Style */
+    #greeting {
+        text-align: center;
+        font-size: 2.5em; /* Large text */
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 4px #000000; /* Makes text pop against the background */
+        margin-bottom: 20px;
+    }
+
+    /* === DOCK STYLES FOR ICON SIZING AND ANIMATION === */
     #dock ul {
         list-style: none;
         padding: 0;
         margin: 0;
         display: flex;
-        justify-content: space-evenly;
-        align-items: flex-end; /* Aligns icons to the bottom for the grow effect */
-        height: 60px; /* Provides space for icons to grow into */
+        justify-content: center; /* Center the icons */
+        align-items: flex-end;
+        height: 60px;
     }
 
     #dock li {
-        margin: 0 5px;
+        margin: 0 10px; /* Increased spacing a bit */
     }
 
     #dock li a {
         display: inline-block;
-        /* Animation properties for smooth grow effect */
         transition: transform 0.2s ease-out;
     }
 
     #dock li img {
-        width: 48px;  /* Set consistent icon width */
-        height: 48px; /* Set consistent icon height */
+        width: 48px;
+        height: 48px;
         vertical-align: middle;
     }
 
-    /* The "bounce" or grow effect on hover */
     #dock li a:hover {
-    /* Combine scale and vertical movement into one property */
-    transform: scale(1.3) translateY(-10px); 
-}
+        transform: scale(1.3) translateY(-10px);
     }
 
     /* LIGHT/DARK MODE SUPPORT */
@@ -136,23 +75,19 @@
         --text-color: #333;
         --link-color: #0066cc;
     }
+
     @media (prefers-color-scheme: dark) {
         :root {
             --text-color: #ffffff;
             --link-color: #66b3ff;
         }
+        main {
+             background-color: rgba(0, 0, 0, 0.2);
+        }
     }
 </style>
 </head>
 <body>
-
-    <div id="weather-alert"></div>
-
-    <div id="news-ticker">
-        <div id="news-content">
-            🔴 Loading News Feed............
-        </div>
-    </div>
 
     <main>
         <header>
@@ -165,10 +100,9 @@
         </header>
         <section id="traichu">
             <h1 class="sr-only">Joey's Homepage</h1>
-            <aside>
-                <img src="https://i.etsystatic.com/9960922/r/il/ed4bf2/4232203623/il_794xN.4232203623_6s42.jpg" alt="Girl and her Cat" style="width: 240px; height: 210px;">
-            </aside>
-            
+
+            <div id="greeting"></div>
+
             <nav id="dock">
                 <ul>
                     <li><a href="https://mail.google.com" title="Gmail"><img src="https://icons.duckduckgo.com/ip3/gmail.google.com.ico" alt="Gmail"></a></li>
@@ -180,13 +114,13 @@
                     <li><a href="calendar.html" title="Calendar"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" alt="Calendar"></a></li>
                 </ul>
             </nav>
-            
+
             <section id="search">
                 <h2 class="sr-only">Search</h2>
                 <form action="https://www.google.com/search" method="get">
                 <input type="text" id="q" name="q" autofocus>
                 <button class="sr-only" tabindex="-1">Search</button>
-               </form>
+                </form>
             </section>
             <section id="bookmarks">
                 <h2 class="sr-only">Bookmarks</h2>
@@ -265,58 +199,26 @@
             </section>
         </section>
     </main>
-    
- <script>
-    // This function loads the news, using the cache for instant speed.
-    function loadNewsFeed() {
-        const newsContent = document.getElementById('news-content');
-        const cacheKey = 'foxNewsFeedCache';
-        const cacheDuration = 15 * 60 * 1000; // 15 minutes in milliseconds
 
-        // 1. Check for a cached version first.
-        const cachedData = localStorage.getItem(cacheKey);
-        if (cachedData) {
-            const { html, timestamp } = JSON.parse(cachedData);
-            
-            // 2. Check if the cached data is still "fresh".
-            if (Date.now() - timestamp < cacheDuration) {
-                console.log('Loading news instantly from cache.');
-                newsContent.innerHTML = html;
-                return; // Use the cached version and stop.
-            }
+<script>
+    // This function sets the greeting based on the time of day.
+    function setGreeting() {
+        const greetingElement = document.getElementById('greeting');
+        const currentHour = new Date().getHours();
+        let greetingText = '';
+
+        if (currentHour < 12) {
+            greetingText = 'Good morning, Arianna';
+        } else if (currentHour < 18) {
+            greetingText = 'Good afternoon, Arianna';
+        } else {
+            greetingText = 'Good evening, Arianna';
         }
-
-        // 3. If no cache or cache is old, fetch from the network.
-        console.log('Fetching fresh news from the server.');
-        fetch('https://moxie.foxnews.com/google-publisher/latest.xml')
-        .then(response => response.text())
-        .then(str => new DOMParser().parseFromString(str, "application/xml"))
-        .then(data => {
-            const items = data.querySelectorAll("item");
-            let html = '';
-            items.forEach(item => {
-                const title = item.querySelector("title").textContent;
-                const link = item.querySelector("link").textContent;
-                html += `<a href="${link}" target="_blank">🦊 ${title}</a>`;
-            });
-            
-            if (html === '') { throw new Error('No items found in RSS feed.'); }
-
-            // 4. Display the new data and save it to the cache.
-            newsContent.innerHTML = html;
-            const dataToCache = { html: html, timestamp: Date.now() };
-            localStorage.setItem(cacheKey, JSON.stringify(dataToCache));
-            
-            console.log('Headlines loaded and cached successfully!');
-        })
-        .catch(error => {
-            console.error('Error fetching or parsing RSS feed:', error);
-            newsContent.innerHTML = '🦊 Unable to load news feed. Please check back later. 🦊';
-        });
+        greetingElement.textContent = greetingText;
     }
 
-    loadNewsFeed();
-    setInterval(loadNewsFeed, 900000); // 900000ms = 15 minutes
+    // Call the function when the page loads
+    document.addEventListener('DOMContentLoaded', setGreeting);
 </script>
 </body>
 </html>
