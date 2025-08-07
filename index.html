@@ -12,9 +12,9 @@
 <style>
     body {
         margin: 0;
-        padding-top: 50px; /* Space for header elements */
-        /* Add a background image with transparency */
-        background-image: url('https://raw.githubusercontent.com/asanders29625/homepage/refs/heads/main/StockCake-Moonlit%20Night%20Sky_1754595354.jpg');
+        /* === FIX: Removed padding-top to allow content to go to the top === */
+        padding: 0;
+        background-image: url('https://raw.githubusercontent.com/asanders29625/homepage/23dc76b4bdc86e51da10fc905eccd75601c8cae1/moon-and-stars-background.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -22,12 +22,12 @@
 
     main {
         position: relative !important;
-        top: 10px !important;
         /* Add a semi-transparent overlay to the main content for readability */
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(0, 0, 0, 0.2); /* Darker overlay for better contrast with light text */
         backdrop-filter: blur(5px); /* Adds a frosted glass effect */
         border-radius: 15px;
         padding: 20px;
+        margin-top: 20px; /* Added some margin for spacing */
     }
 
     /* Greeting Message Style */
